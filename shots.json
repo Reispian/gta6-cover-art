@@ -1,5 +1,1 @@
-[
-  { "name": "1-cover.jpg", "query": "?shot=cover&photo=pier&caption=Sunset%20Heist", "w": 1080, "h": 1080 },
-  { "name": "2-editor.jpg", "query": "?shot=editor&photo=boulevard&caption=Boulevard%20Queen", "w": 1280, "h": 720 },
-  { "name": "3-cover.jpg", "query": "?shot=cover&photo=boulevard&caption=Boulevard%20Queen", "w": 1080, "h": 1080 }
-]
+[{"h":1080,"name":"1-cover.jpg","query":"?shot=cover&size=1920x1080&photoA=pier&photoB=boulevard&photoC=pier&title=Vice%20Sunset&subtitle=A%20Leonida%20Story&grade=sunset","w":1920},{"h":720,"name":"2-editor.jpg","query":"?shot=editor&size=1920x1080&photoA=pier&photoB=boulevard&photoC=pier&title=Vice%20Sunset&subtitle=A%20Leonida%20Story&grade=sunset","w":1280},{"h":1350,"name":"3-cover.jpg","query":"?shot=cover&size=1080x1350&photoA=boulevard&photoB=pier&photoC=boulevard&title=Neon%20Nights&subtitle=Vice%20City&grade=neon","w":1080},{"h":1080,"name":"4-cover.jpg","query":"?shot=cover&size=1080x1080&photoA=pier&photoB=pier&photoC=boulevard&title=Gold%20Rush&subtitle=Sunset%20Heist&grade=gold","w":1080}]

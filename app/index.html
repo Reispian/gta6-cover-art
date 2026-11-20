@@ -3,20 +3,104 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cover Snap</title>
+<title>Vice Sunset Studio — GTA 6-style cover art maker</title>
+<link rel="icon" href="data:,">
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+<header class="topbar">
+  <div class="brand">VICE SUNSET <span>STUDIO</span></div>
+  <p class="tagline">Turn your photos into a GTA-style cover poster. Everything runs offline, in your browser.</p>
+</header>
 <main class="app">
-  <section class="controls">
-    <h1>Cover Snap</h1>
-    <p>A photo and a caption, made into a square cover.</p>
-    <label>Photo <input id="photo" type="file" accept="image/*"></label>
-    <label>Caption <input id="caption" type="text" maxlength="40" value="Sunset Heist"></label>
-    <button id="export" type="button">Export PNG 1080 x 1080</button>
-    <p id="status" role="status"></p>
+  <section class="controls" aria-label="Cover controls">
+    <h1>Make your cover</h1>
+    <p class="hint">Three steps: add photos, write the caption, export a PNG.</p>
+
+    <fieldset>
+      <legend>1 · Photos — one per panel</legend>
+      <div class="panel-card selected" data-panel="0">
+        <span class="panel-name">Hero panel</span>
+        <span class="panel-state">Empty — add a photo</span>
+        <label class="upload">Upload photo <input class="photo-input" type="file" accept="image/*"></label>
+        <button class="fill-all" type="button">Use this photo in all panels</button>
+      </div>
+      <div class="panel-card" data-panel="1">
+        <span class="panel-name">Panel 2</span>
+        <span class="panel-state">Empty — add a photo</span>
+        <label class="upload">Upload photo <input class="photo-input" type="file" accept="image/*"></label>
+        <button class="fill-all" type="button">Use this photo in all panels</button>
+      </div>
+      <div class="panel-card" data-panel="2">
+        <span class="panel-name">Panel 3</span>
+        <span class="panel-state">Empty — add a photo</span>
+        <label class="upload">Upload photo <input class="photo-input" type="file" accept="image/*"></label>
+        <button class="fill-all" type="button">Use this photo in all panels</button>
+      </div>
+      <button id="loadSamples" type="button">Load sample photos</button>
+      <p class="note">Tip: drop a photo straight onto a panel in the preview, or click a panel to select it.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>2 · Crop the selected panel</legend>
+      <label>Zoom <span id="zoomVal">1.00x</span>
+        <input id="zoom" type="range" min="1" max="3" step="0.01" value="1">
+      </label>
+      <p class="note">Drag the photo inside its panel to move it. Scroll over the preview to zoom.</p>
+      <button id="resetPos" type="button">Reset crop</button>
+    </fieldset>
+
+    <fieldset>
+      <legend>3 · Caption</legend>
+      <label>Title <input id="title" type="text" maxlength="40" value="Vice Sunset"></label>
+      <label>Subtitle <input id="subtitle" type="text" maxlength="60" value="A Leonida Story"></label>
+      <label>Title colour
+        <span class="swatches">
+          <button class="swatch" type="button" data-color="#ffffff" style="background:#ffffff" aria-label="White"></button>
+          <button class="swatch" type="button" data-color="#ffd166" style="background:#ffd166" aria-label="Gold"></button>
+          <button class="swatch" type="button" data-color="#37f5e6" style="background:#37f5e6" aria-label="Neon cyan"></button>
+          <button class="swatch" type="button" data-color="#ff5e8a" style="background:#ff5e8a" aria-label="Pink"></button>
+          <input id="titleColor" type="color" value="#ffffff" aria-label="Custom title colour">
+        </span>
+      </label>
+      <label>Caption position
+        <select id="titlePos">
+          <option value="bottom" selected>Bottom</option>
+          <option value="top">Top</option>
+        </select>
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>4 · Look</legend>
+      <div class="grade-row">
+        <button class="grade-btn active" type="button" data-grade="sunset">Sunset</button>
+        <button class="grade-btn" type="button" data-grade="neon">Neon</button>
+        <button class="grade-btn" type="button" data-grade="noir">Noir</button>
+        <button class="grade-btn" type="button" data-grade="gold">Gold</button>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>5 · Export PNG</legend>
+      <div class="size-row" role="radiogroup" aria-label="Post size">
+        <label><input type="radio" name="size" value="square"> Square 1080×1080</label>
+        <label><input type="radio" name="size" value="portrait"> Portrait 1080×1350</label>
+        <label><input type="radio" name="size" value="landscape" checked> Wide 1920×1080</label>
+      </div>
+      <div class="export-row">
+        <button class="export-btn" type="button" data-size="square">Export 1080×1080</button>
+        <button class="export-btn" type="button" data-size="portrait">Export 1080×1350</button>
+        <button class="export-btn" type="button" data-size="landscape">Export 1920×1080</button>
+      </div>
+      <p id="status" role="status"></p>
+    </fieldset>
   </section>
-  <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
+
+  <section class="stage" aria-label="Cover preview">
+    <canvas id="preview" width="900" height="506" aria-label="The cover preview"></canvas>
+    <p class="hint">Click a panel to select it. Drag to move its photo, scroll to zoom.</p>
+  </section>
 </main>
 <script type="module" src="./src/main.js"></script>
 </body>
